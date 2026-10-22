@@ -74,7 +74,12 @@ src/
 - **Carrinho** salvo em `localStorage` (chave `essencia:cart:v1`), sincronizado entre abas; dados corrompidos são ignorados.
 - **Imagens**: fotos do Unsplash escolhidas por não exibirem marcas ou rótulos reais. Se alguma URL cair, `SmartImage` mostra um painel neutro na paleta da marca.
 - **Instagram**: `/produtos` mostra os produtos logo no início, com busca, filtros, preço e botão “Adicionar” no próprio card; no celular aparece um atalho fixo “Ver sacola” assim que há itens.
-- **Hospedagem SPA**: `public/_redirects` (Netlify) e `vercel.json` (Vercel) já redirecionam todas as rotas para `index.html`, para que recarregar `/produtos` não dê 404.
+- **Hospedagem SPA**: `public/_redirects` (Netlify) e `vercel.json` (Vercel) já redirecionam todas as rotas para `index.html`. Para hosts sem regra de rewrite (como o Render), `scripts/spa-routes.mjs` roda após o build e cria uma cópia de `index.html` para cada rota e produto, além de `404.html`. Ao adicionar produtos, basta rodar o build de novo.
+
+## Publicação (Render)
+
+O site está publicado como *Static Site* no Render, ligado à branch `main` deste repositório, com deploy automático a cada push.
+Build: `npm ci && npm run build` · Diretório publicado: `dist`.
 
 ## O que é apenas demonstrativo
 
