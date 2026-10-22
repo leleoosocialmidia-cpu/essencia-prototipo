@@ -1,0 +1,74 @@
+@import "tailwindcss";
+@import "./styles/theme.css";
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-ivory font-sans text-ink antialiased;
+    font-weight: 400;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-serif font-medium tracking-tight;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-olive);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--color-sand);
+  }
+}
+
+/* Classes de componente reutilizáveis (definidas como utilities para aceitar variantes e @apply). */
+@utility container-site {
+  @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+}
+@utility eyebrow {
+  @apply text-xs font-medium tracking-[0.2em] text-earth uppercase;
+}
+@utility btn {
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-soft px-6 text-sm font-medium tracking-wide transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-olive text-ivory hover:bg-olive-dark;
+}
+@utility btn-secondary {
+  @apply btn border border-ink/25 text-ink hover:border-ink hover:bg-cream;
+}
+@utility btn-ghost {
+  @apply btn px-3 text-ink hover:bg-cream;
+}
+@utility input {
+  @apply min-h-11 w-full rounded-soft border border-sand-dark bg-ivory px-3 text-base text-ink placeholder:text-muted/70 focus:border-olive focus:outline-none aria-invalid:border-danger;
+}
+@utility label {
+  @apply mb-1.5 block text-sm text-ink;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out both;
+}
